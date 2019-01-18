@@ -25,8 +25,11 @@ namespace CSL_AutoRocketLaunch
             // Load the configuration
             AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
 
+            // Add Setting Group
+            UIHelperBase group = helper.AddGroup("Auto Rocket Launch");
+
             // Set Target Tourist Number
-            helper.AddTextfield("Target Tourist Number", config.targetTouristNum, (value) =>
+            group.AddTextfield("Target Tourist Number", config.targetTouristNum, (value) =>
             {
                 config.targetTouristNum = value;
                 Configuration<AutoRocketLaunchConfiguration>.Save();
