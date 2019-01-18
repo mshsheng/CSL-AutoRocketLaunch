@@ -18,5 +18,20 @@ namespace CSL_AutoRocketLaunch
         {
             get { return "Launching rockets automatically"; }
         }
+
+        // Sets up a settings user interface
+        public void OnSettingsUI(UIHelperBase helper)
+        {
+            // Load the configuration
+            AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
+
+            // Set Target Tourist Number
+            helper.AddTextfield("Target Tourist Number", config.targetTouristNum, (value) =>
+            {
+                config.targetTouristNum = value;
+                Configuration<AutoRocketLaunchConfiguration>.Save();
+            });
+            
+        }
     }
 }
