@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoRocketLaunch.cs" />
     <Compile Include="AutoRocketLaunchConfiguration.cs" />
     <Compile Include="AutoRocketLaunchMod.cs" />
     <Compile Include="Configuration.cs" />
