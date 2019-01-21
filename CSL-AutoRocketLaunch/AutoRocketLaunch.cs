@@ -17,15 +17,20 @@ namespace CSL_AutoRocketLaunch
             if (threadingManager.simulationTick % 1024 == 0 && !threadingManager.simulationPaused)
             {
                 ushort serviceLaunchSite = (new LaunchSite()).GetLaunchSite();
-                if (serviceLaunchSite == 0)
+                if (serviceLaunchSite != 0)
                 {
-                    Debug.Log("No Launch Site Found. Exit.");
-                }
-                else
-                {
-                    int[] visitorNum = (new VisitorMethods()).GetVisitorNum(serviceLaunchSite);
-                    string logStr = "Found Launch Site. Current Visitor Number: " + visitorNum[0].ToString() + " Max Visitor Number: " + visitorNum[1].ToString();
-                    Debug.Log(logStr);
+                    LaunchMethods launchMethods = new LaunchMethods(serviceLaunchSite);
+                    bool launchState = launchMethods.CheckLaunchState();
+                    if (launchState)
+                    {
+                        int arrivedVisitors = launchMethods.GetVisitorNum();
+                        AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
+                        int targetVisitorNum = config.targetVisitorNum;
+                        if (arrivedVisitors >= targetVisitorNum)
+                        {
+                            launchMethods.LaunchRocket();
+                        }
+                    }
                 }
             }
             base.OnAfterSimulationTick();

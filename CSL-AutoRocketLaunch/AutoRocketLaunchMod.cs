@@ -28,12 +28,12 @@ namespace CSL_AutoRocketLaunch
             // Add Setting Group
             UIHelperBase group = helper.AddGroup("Auto Rocket Launch");
 
-            // Set Target Tourist Number
-            group.AddTextfield("Target Tourist Number", config.targetTouristNum.ToString(), (value) =>
+            // Set Target Visitor Number
+            group.AddTextfield("Target Visitor Number", config.targetVisitorNum.ToString(), (value) =>
             {
                 try
                 {
-                    config.targetTouristNum = ushort.Parse(value);
+                    config.targetVisitorNum = ushort.Parse(value);
                     Configuration<AutoRocketLaunchConfiguration>.Save();
                 }
                 catch

@@ -8,6 +8,6 @@ namespace CSL_AutoRocketLaunch
     [ConfigurationPath("AutoRocketLaunch.xml")]
     public class AutoRocketLaunchConfiguration
     {
-        public ushort targetTouristNum { get; set; } = 360;
+        public ushort targetVisitorNum { get; set; } = 350;
     }
 }
