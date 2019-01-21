@@ -12,37 +12,21 @@ namespace CSL_AutoRocketLaunch
 {
     public class AutoRocketLaunch : ThreadingExtensionBase
     {
-
-        public bool CheckLaunchSite()
-        {
-            BuildingManager _buildingManager = Singleton<BuildingManager>.instance;
-            FastList<ushort> monumentBuildings = _buildingManager.GetServiceBuildings(ItemClass.Service.Monument);
-
-            var buffer = _buildingManager.m_buildings.m_buffer;
-
-            foreach (ushort serviceMonument in monumentBuildings)
-            {
-                var _buildingInfoTooltipThumbnail = buffer[serviceMonument].Info.m_InfoTooltipThumbnail;
-                if (_buildingInfoTooltipThumbnail == "ChirpXLaunchSite")
-                {
-                    return true;
-                }
-            }
-
-            return false;
-
-        }
-
         public override void OnAfterSimulationTick()
         {
             if (threadingManager.simulationTick % 1024 == 0 && !threadingManager.simulationPaused)
             {
-                if (!CheckLaunchSite())
+                ushort serviceLaunchSite = (new LaunchSite()).GetLaunchSite();
+                if (serviceLaunchSite == 0)
                 {
                     Debug.Log("No Launch Site Found. Exit.");
-                    return;
                 }
-                Debug.Log("Found Launch Site.");
+                else
+                {
+                    int[] visitorNum = (new VisitorMethods()).GetVisitorNum(serviceLaunchSite);
+                    string logStr = "Found Launch Site. Current Visitor Number: " + visitorNum[0].ToString() + " Max Visitor Number: " + visitorNum[1].ToString();
+                    Debug.Log(logStr);
+                }
             }
             base.OnAfterSimulationTick();
         }

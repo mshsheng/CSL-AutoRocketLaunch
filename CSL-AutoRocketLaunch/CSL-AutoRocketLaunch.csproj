@@ -55,7 +55,9 @@
     <Compile Include="AutoRocketLaunchConfiguration.cs" />
     <Compile Include="AutoRocketLaunchMod.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="LaunchSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisitorMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
