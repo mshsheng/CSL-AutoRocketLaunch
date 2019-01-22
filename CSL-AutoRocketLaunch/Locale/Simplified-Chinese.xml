@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language UniqueName="zh-cn" ReadableName="简体中文" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Translations>
+    <Translation ID="AUTO-ROCKET-LAUNCH-MODNAME" String="火箭自动发射" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-MODDESCRIPTION" String="自动发射火箭" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-targetVisitorNum" String="目标观众人数" />
+  </Translations>
+</Language>

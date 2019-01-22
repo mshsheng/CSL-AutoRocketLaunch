@@ -58,6 +58,16 @@
     <Compile Include="LaunchMethods.cs" />
     <Compile Include="LaunchSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TranslationFramework\Language.cs" />
+    <Compile Include="TranslationFramework\TranslatableAttribute.cs" />
+    <Compile Include="TranslationFramework\Translation.cs" />
+    <Compile Include="TranslationFramework\TranslationUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Locale\Traditional-Chinese.xml" />
+    <Content Include="Locale\Simplified-Chinese.xml" />
+    <Content Include="Locale\Chinese.xml" />
+    <Content Include="Locale\English.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

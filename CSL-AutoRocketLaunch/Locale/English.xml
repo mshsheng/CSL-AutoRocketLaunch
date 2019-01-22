@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language UniqueName="en" ReadableName="English" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Translations>
+    <Translation ID="AUTO-ROCKET-LAUNCH-MODNAME" String="Auto Rocket Launch" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-MODDESCRIPTION" String="Launching rockets automatically" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-targetVisitorNum" String="Target Visitor Number" />
+  </Translations>
+</Language>
