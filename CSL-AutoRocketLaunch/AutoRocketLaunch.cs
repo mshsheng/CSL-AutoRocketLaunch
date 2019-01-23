@@ -8,19 +8,31 @@ namespace CSL_AutoRocketLaunch
         {
             if (threadingManager.simulationTick % 1024 == 0 && !threadingManager.simulationPaused)
             {
-                ushort serviceLaunchSite = (new LaunchSite()).GetLaunchSite();
-                if (serviceLaunchSite != 0)
+                AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
+                if (config.enabled)
                 {
-                    LaunchMethods launchMethods = new LaunchMethods(serviceLaunchSite);
-                    bool launchState = launchMethods.CheckLaunchState();
-                    if (launchState)
+                    ushort serviceLaunchSite = (new LaunchSite()).GetLaunchSite();
+                    if (serviceLaunchSite != 0)
                     {
-                        int arrivedVisitors = launchMethods.GetVisitorNum();
-                        AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
-                        int targetVisitorNum = config.targetVisitorNum;
-                        if (arrivedVisitors >= targetVisitorNum)
+                        LaunchMethods launchMethods = new LaunchMethods(serviceLaunchSite);
+                        bool launchState = launchMethods.CheckLaunchState();
+                        if (launchState)
                         {
-                            launchMethods.LaunchRocket();
+                            switch (config.mode)
+                            {
+                                case 1:
+                                    int arrivedVisitors = launchMethods.GetVisitorNum();
+                                    int targetVisitorNum = config.targetVisitorNum;
+                                    if (arrivedVisitors >= targetVisitorNum)
+                                    {
+                                        launchMethods.LaunchRocket();
+                                    }
+                                    break;
+
+                                default:
+                                    launchMethods.LaunchRocket();
+                                    break;
+                            }
                         }
                     }
                 }

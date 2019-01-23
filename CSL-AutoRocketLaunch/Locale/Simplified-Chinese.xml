@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Language UniqueName="zh-cn" ReadableName="简体中文" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Translations>
-    <Translation ID="AUTO-ROCKET-LAUNCH-MODNAME" String="火箭自动发射" />
-    <Translation ID="AUTO-ROCKET-LAUNCH-MODDESCRIPTION" String="自动发射火箭" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-modName" String="火箭自动发射" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-modDescription" String="自动发射火箭" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-enable" String="启用" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-settings" String="设置" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-modeSetting" String="发射模式" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-immediateMode" String="立即发射" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-visitorMode" String="观众人数" />
     <Translation ID="AUTO-ROCKET-LAUNCH-targetVisitorNum" String="目标观众人数" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-immediateModeDescription" String="立即发射模式：火箭建设完成后立即发射" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-visitorModeDescription" String="观众人数模式：满足一定观众人数时发射" />
   </Translations>
 </Language>

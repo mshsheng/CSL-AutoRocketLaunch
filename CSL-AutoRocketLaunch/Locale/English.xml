@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Language UniqueName="en" ReadableName="English" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Translations>
-    <Translation ID="AUTO-ROCKET-LAUNCH-MODNAME" String="Auto Rocket Launch" />
-    <Translation ID="AUTO-ROCKET-LAUNCH-MODDESCRIPTION" String="Launching rockets automatically" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-modName" String="Auto Rocket Launch" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-modDescription" String="Launching rockets automatically" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-enable" String="Enabled" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-settings" String="Settings" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-modeSetting" String="Rocket launch mode" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-immediateMode" String="Immediate Mode" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-visitorMode" String="Visitor Mode" />
     <Translation ID="AUTO-ROCKET-LAUNCH-targetVisitorNum" String="Target Visitor Number" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-immediateModeDescription" String="Immediate Mode: Launch the rocket immediately after the construction is &#x000A;completed." />
+    <Translation ID="AUTO-ROCKET-LAUNCH-visitorModeDescription" String="Visitor Mode: Launch the rocket when there is a certain number of visitors." />
   </Translations>
 </Language>
