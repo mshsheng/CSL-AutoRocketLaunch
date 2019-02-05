@@ -36,7 +36,9 @@ namespace CSL_AutoRocketLaunch
             ushort eventID = m_currentEventID;
             Singleton<SimulationManager>.instance.AddAction(delegate
             {
+                RocketLaunchAIDetour.Deploy();
                 rocketLaunchAI.Activate(eventID, ref Singleton<EventManager>.instance.m_events.m_buffer[eventID]);
+                RocketLaunchAIDetour.Revert();
             });
         }
     }
