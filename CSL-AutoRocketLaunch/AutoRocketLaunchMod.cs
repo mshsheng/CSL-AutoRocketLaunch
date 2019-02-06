@@ -29,11 +29,28 @@ namespace CSL_AutoRocketLaunch
             UIHelperBase groupEnable = helper.AddGroup(translation.GetTranslation("AUTO-ROCKET-LAUNCH-modName"));
             UIHelperBase groupSettings = helper.AddGroup(translation.GetTranslation("AUTO-ROCKET-LAUNCH-settings"));
 
-            bool enabled = config.enabled;
-
-            groupEnable.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-enable"), enabled, sel =>
+            groupEnable.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-enable"), config.enabled, sel =>
             {
                 config.enabled = sel;
+                Configuration<AutoRocketLaunchConfiguration>.Save();
+            });
+
+            groupSettings.AddTextfield(translation.GetTranslation("AUTO-ROCKET-LAUNCH-timeInterval"), config.timeInterval.ToString(), value =>
+            {
+                try
+                {
+                    config.timeInterval = int.Parse(value);
+                    Configuration<AutoRocketLaunchConfiguration>.Save();
+                }
+                catch
+                {
+                    Debug.Log("AutoRocketLaunch: TypeError");
+                }
+            });
+
+            groupSettings.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-autoFocus"), config.autoFocus, sel =>
+            {
+                config.autoFocus = sel;
                 Configuration<AutoRocketLaunchConfiguration>.Save();
             });
 
@@ -50,20 +67,20 @@ namespace CSL_AutoRocketLaunch
                 Configuration<AutoRocketLaunchConfiguration>.Save();
             });
 
-            string modeDescription = translation.GetTranslation("AUTO-ROCKET-LAUNCH-immediateModeDescription") + "\n" + 
+            string modeDescription = translation.GetTranslation("AUTO-ROCKET-LAUNCH-immediateModeDescription") + "\n" +
                 translation.GetTranslation("AUTO-ROCKET-LAUNCH-visitorModeDescription") + "\n";
 
-            UITextField txtModeDescription = (UITextField)groupSettings.AddTextfield(modeDescription," ", (s) => { }, (s) => { });
+            UITextField txtModeDescription = (UITextField)groupSettings.AddTextfield(modeDescription, " ", (s) => { }, (s) => { });
             txtModeDescription.Disable();
 
             groupSettings.AddSpace(20);
 
             // Set Target Tourist Number
-            groupSettings.AddTextfield(translation.GetTranslation("AUTO-ROCKET-LAUNCH-targetVisitorNum"), config.targetVisitorNum.ToString(), (value) =>
+            groupSettings.AddTextfield(translation.GetTranslation("AUTO-ROCKET-LAUNCH-targetVisitorNum"), config.targetVisitorNum.ToString(), value =>
             {
                 try
                 {
-                    config.targetVisitorNum = ushort.Parse(value);
+                    config.targetVisitorNum = int.Parse(value);
                     Configuration<AutoRocketLaunchConfiguration>.Save();
                 }
                 catch
@@ -71,9 +88,6 @@ namespace CSL_AutoRocketLaunch
                     Debug.Log("AutoRocketLaunch: TypeError");
                 }
             });
-
-
-
         }
     }
 }

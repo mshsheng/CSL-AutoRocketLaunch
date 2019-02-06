@@ -5,6 +5,8 @@
     <Translation ID="AUTO-ROCKET-LAUNCH-modDescription" String="自动发射火箭" />
     <Translation ID="AUTO-ROCKET-LAUNCH-enable" String="启用" />
     <Translation ID="AUTO-ROCKET-LAUNCH-settings" String="设置" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-timeInterval" String="时间间隔（秒）" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-autoFocus" String="自动关注" />
     <Translation ID="AUTO-ROCKET-LAUNCH-modeSetting" String="发射模式" />
     <Translation ID="AUTO-ROCKET-LAUNCH-immediateMode" String="立即发射" />
     <Translation ID="AUTO-ROCKET-LAUNCH-visitorMode" String="观众人数" />

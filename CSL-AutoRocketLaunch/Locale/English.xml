@@ -5,6 +5,8 @@
     <Translation ID="AUTO-ROCKET-LAUNCH-modDescription" String="Launching rockets automatically" />
     <Translation ID="AUTO-ROCKET-LAUNCH-enable" String="Enabled" />
     <Translation ID="AUTO-ROCKET-LAUNCH-settings" String="Settings" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-timeInterval" String="Time Interval (second)" />
+    <Translation ID="AUTO-ROCKET-LAUNCH-autoFocus" String="Auto Focus" />
     <Translation ID="AUTO-ROCKET-LAUNCH-modeSetting" String="Rocket launch mode" />
     <Translation ID="AUTO-ROCKET-LAUNCH-immediateMode" String="Immediate Mode" />
     <Translation ID="AUTO-ROCKET-LAUNCH-visitorMode" String="Visitor Mode" />

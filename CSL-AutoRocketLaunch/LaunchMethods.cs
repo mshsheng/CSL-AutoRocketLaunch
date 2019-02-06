@@ -31,14 +31,22 @@ namespace CSL_AutoRocketLaunch
             return arrivedVisitors;
         }
 
-        public void LaunchRocket()
+        public void LaunchRocket(bool autoFocus)
         {
             ushort eventID = m_currentEventID;
             Singleton<SimulationManager>.instance.AddAction(delegate
             {
-                RocketLaunchAIDetour.Deploy();
+                if (!autoFocus)
+                {
+                    RocketLaunchAIDetour.Deploy();
+                }
+
                 rocketLaunchAI.Activate(eventID, ref Singleton<EventManager>.instance.m_events.m_buffer[eventID]);
-                RocketLaunchAIDetour.Revert();
+
+                if (!autoFocus)
+                {
+                    RocketLaunchAIDetour.Revert();
+                }
             });
         }
     }
