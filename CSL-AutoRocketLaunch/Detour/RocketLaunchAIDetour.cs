@@ -2,8 +2,9 @@
 using System.Reflection;
 using ColossalFramework;
 using UnityEngine;
+using CSL_AutoRocketLaunch.Redirection;
 
-namespace CSL_AutoRocketLaunch
+namespace CSL_AutoRocketLaunch.Detour
 {
     public class RocketLaunchAIDetour : EventAI
     {
@@ -57,12 +58,12 @@ namespace CSL_AutoRocketLaunch
             crawler = 0;
             rocket = 0;
 
-            object[] content = { eventID, data, crawler, rocket };
-            FindVehiclesMethod.Invoke(this, content);
+            object[] invokeArgs = { eventID, data, crawler, rocket };
+            FindVehiclesMethod.Invoke(this, invokeArgs);
 
-            data = (EventData)content[1];
-            crawler = (ushort)content[2];
-            rocket = (ushort)content[3];
+            data = (EventData)invokeArgs[1];
+            crawler = (ushort)invokeArgs[2];
+            rocket = (ushort)invokeArgs[3];
         }
 
         protected override void BeginEvent(ushort eventID, ref EventData data)

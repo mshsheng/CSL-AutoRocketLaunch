@@ -1,6 +1,7 @@
 ﻿using ColossalFramework;
+using CSL_AutoRocketLaunch.Detour;
 
-namespace CSL_AutoRocketLaunch
+namespace CSL_AutoRocketLaunch.Launch
 {
     class LaunchMethods
     {

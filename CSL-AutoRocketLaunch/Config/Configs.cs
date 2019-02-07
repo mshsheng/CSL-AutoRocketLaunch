@@ -1,7 +1,7 @@
-﻿namespace CSL_AutoRocketLaunch
+﻿namespace CSL_AutoRocketLaunch.Config
 {
     [ConfigurationPath("AutoRocketLaunch.xml")]
-    public class AutoRocketLaunchConfiguration
+    public class Configs
     {
         public bool enabled { get; set; } = true;
         public int mode { get; set; } = 0;

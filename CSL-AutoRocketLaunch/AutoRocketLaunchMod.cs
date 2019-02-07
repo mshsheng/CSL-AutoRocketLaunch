@@ -1,5 +1,6 @@
 ﻿using ICities;
 using UnityEngine;
+using CSL_AutoRocketLaunch.Config;
 using CSL_AutoRocketLaunch.TranslationFramework;
 using ColossalFramework.UI;
 
@@ -19,11 +20,11 @@ namespace CSL_AutoRocketLaunch
             get { return translation.GetTranslation("AUTO-ROCKET-LAUNCH-modDescription"); }
         }
 
-        // Sets up a settings user interface
+        // Settings UI
         public void OnSettingsUI(UIHelperBase helper)
         {
             // Load the configuration
-            AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
+            Configs config = Configuration<Configs>.Load();
 
             // Add Setting Group
             UIHelperBase groupEnable = helper.AddGroup(translation.GetTranslation("AUTO-ROCKET-LAUNCH-modName"));
@@ -32,7 +33,7 @@ namespace CSL_AutoRocketLaunch
             groupEnable.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-enable"), config.enabled, sel =>
             {
                 config.enabled = sel;
-                Configuration<AutoRocketLaunchConfiguration>.Save();
+                Configuration<Configs>.Save();
             });
 
             groupSettings.AddTextfield(translation.GetTranslation("AUTO-ROCKET-LAUNCH-timeInterval"), config.timeInterval.ToString(), value =>
@@ -40,7 +41,7 @@ namespace CSL_AutoRocketLaunch
                 try
                 {
                     config.timeInterval = int.Parse(value);
-                    Configuration<AutoRocketLaunchConfiguration>.Save();
+                    Configuration<Configs>.Save();
                 }
                 catch
                 {
@@ -51,7 +52,7 @@ namespace CSL_AutoRocketLaunch
             groupSettings.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-autoFocus"), config.autoFocus, sel =>
             {
                 config.autoFocus = sel;
-                Configuration<AutoRocketLaunchConfiguration>.Save();
+                Configuration<Configs>.Save();
             });
 
             string[] modeLabels =
@@ -64,7 +65,7 @@ namespace CSL_AutoRocketLaunch
             groupSettings.AddDropdown(translation.GetTranslation("AUTO-ROCKET-LAUNCH-modeSetting"), modeLabels, mode, sel =>
             {
                 config.mode = sel;
-                Configuration<AutoRocketLaunchConfiguration>.Save();
+                Configuration<Configs>.Save();
             });
 
             string modeDescription = translation.GetTranslation("AUTO-ROCKET-LAUNCH-immediateModeDescription") + "\n" +
@@ -81,7 +82,7 @@ namespace CSL_AutoRocketLaunch
                 try
                 {
                     config.targetVisitorNum = int.Parse(value);
-                    Configuration<AutoRocketLaunchConfiguration>.Save();
+                    Configuration<Configs>.Save();
                 }
                 catch
                 {

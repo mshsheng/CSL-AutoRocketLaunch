@@ -1,4 +1,6 @@
 ﻿using ICities;
+using CSL_AutoRocketLaunch.Config;
+using CSL_AutoRocketLaunch.Launch;
 
 namespace CSL_AutoRocketLaunch
 {
@@ -13,7 +15,7 @@ namespace CSL_AutoRocketLaunch
                 return;
             }
 
-            AutoRocketLaunchConfiguration config = Configuration<AutoRocketLaunchConfiguration>.Load();
+            Configs config = Configuration<Configs>.Load();
             if (!config.enabled)
             {
                 return;

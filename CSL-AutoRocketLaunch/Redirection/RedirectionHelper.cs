@@ -21,7 +21,7 @@ THE SOFTWARE.
 using System;
 using System.Reflection;
 
-namespace CSL_AutoRocketLaunch
+namespace CSL_AutoRocketLaunch.Redirection
 {
     public struct RedirectCallsState
     {

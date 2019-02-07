@@ -1,6 +1,6 @@
 ﻿using ColossalFramework;
 
-namespace CSL_AutoRocketLaunch
+namespace CSL_AutoRocketLaunch.Launch
 {
     class LaunchSite
     {
