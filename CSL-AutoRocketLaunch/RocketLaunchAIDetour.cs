@@ -8,15 +8,17 @@ namespace CSL_AutoRocketLaunch
     public class RocketLaunchAIDetour : EventAI
     {
         private static RedirectCallsState _state;
-        private static readonly MethodInfo Method = typeof(RocketLaunchAI).GetMethod("BeginEvent", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly MethodInfo Detour = typeof(RocketLaunchAIDetour).GetMethod("BeginEvent", BindingFlags.Instance | BindingFlags.NonPublic);
+        private static readonly MethodInfo BeginEventMethod = typeof(RocketLaunchAI).GetMethod("BeginEvent", BindingFlags.Instance | BindingFlags.NonPublic);
+        private static readonly MethodInfo BeginEventDetour = typeof(RocketLaunchAIDetour).GetMethod("BeginEvent", BindingFlags.Instance | BindingFlags.NonPublic);
         private static bool _deployed;
+
+        private static MethodInfo FindVehiclesMethod = typeof(RocketLaunchAI).GetMethod("FindVehicles", BindingFlags.Instance | BindingFlags.NonPublic);
 
         public VehicleInfo m_crawlerVehicle => (VehicleInfo)typeof(RocketLaunchAI).GetField("m_crawlerVehicle", BindingFlags.Instance | BindingFlags.Public).GetValue(this);
         public VehicleInfo m_rocketVehicle => (VehicleInfo)typeof(RocketLaunchAI).GetField("m_rocketVehicle", BindingFlags.Instance | BindingFlags.Public).GetValue(this);
 
         public EffectInfo m_launchAlarmEffect => (EffectInfo)typeof(RocketLaunchAI).GetField("m_launchAlarmEffect", BindingFlags.Instance | BindingFlags.Public).GetValue(this);
-        public Vector3 m_rocketLaunchPosition=> (Vector3)typeof(RocketLaunchAI).GetField("m_rocketLaunchPosition", BindingFlags.Instance | BindingFlags.Public).GetValue(this);
+        public Vector3 m_rocketLaunchPosition => (Vector3)typeof(RocketLaunchAI).GetField("m_rocketLaunchPosition", BindingFlags.Instance | BindingFlags.Public).GetValue(this);
 
         public static void Deploy()
         {
@@ -24,7 +26,7 @@ namespace CSL_AutoRocketLaunch
             {
                 try
                 {
-                    _state = RedirectionHelper.RedirectCalls(Method, Detour);
+                    _state = RedirectionHelper.RedirectCalls(BeginEventMethod, BeginEventDetour);
                 }
                 catch (Exception exception)
                 {
@@ -40,7 +42,7 @@ namespace CSL_AutoRocketLaunch
             {
                 try
                 {
-                    RedirectionHelper.RevertRedirect(Method, _state);
+                    RedirectionHelper.RevertRedirect(BeginEventMethod, _state);
                 }
                 catch (Exception exception)
                 {
@@ -54,34 +56,13 @@ namespace CSL_AutoRocketLaunch
         {
             crawler = 0;
             rocket = 0;
-            if (data.m_building == 0)
-            {
-                return;
-            }
-            BuildingManager instance = Singleton<BuildingManager>.instance;
-            VehicleManager instance2 = Singleton<VehicleManager>.instance;
-            ushort num = instance.m_buildings.m_buffer[data.m_building].m_ownVehicles;
-            int num2 = 0;
-            do
-            {
-                if (num != 0)
-                {
-                    VehicleInfo info = instance2.m_vehicles.m_buffer[num].Info;
-                    if ((object)info == m_crawlerVehicle)
-                    {
-                        crawler = num;
-                    }
-                    else if ((object)info == m_rocketVehicle)
-                    {
-                        rocket = num;
-                    }
-                    num = instance2.m_vehicles.m_buffer[num].m_nextOwnVehicle;
-                    continue;
-                }
-                return;
-            }
-            while (++num2 <= 16384);
-            CODebugBase<LogChannel>.Error(LogChannel.Core, "Invalid list detected!\n" + Environment.StackTrace);
+
+            object[] content = { eventID, data, crawler, rocket };
+            FindVehiclesMethod.Invoke(this, content);
+
+            data = (EventData)content[1];
+            crawler = (ushort)content[2];
+            rocket = (ushort)content[3];
         }
 
         protected override void BeginEvent(ushort eventID, ref EventData data)
