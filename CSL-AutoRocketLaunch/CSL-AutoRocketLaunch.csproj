@@ -52,7 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoRocketLaunch.cs" />
+    <Compile Include="Config\ConfigMethods.cs" />
+    <Compile Include="LoadingExtension.cs" />
+    <Compile Include="ThreadingExtension.cs" />
     <Compile Include="Config\Configs.cs" />
     <Compile Include="AutoRocketLaunchMod.cs" />
     <Compile Include="Config\Configuration.cs" />

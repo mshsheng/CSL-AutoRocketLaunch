@@ -4,7 +4,7 @@ using CSL_AutoRocketLaunch.Launch;
 
 namespace CSL_AutoRocketLaunch
 {
-    public class AutoRocketLaunch : ThreadingExtensionBase
+    public class ThreadingExtension : ThreadingExtensionBase
     {
         public override void OnAfterSimulationTick()
         {
@@ -15,14 +15,13 @@ namespace CSL_AutoRocketLaunch
                 return;
             }
 
-            Configs config = Configuration<Configs>.Load();
-            if (!config.enabled)
+            if (!ConfigMethods.enabled)
             {
                 return;
             }
 
-            int timeInterval = config.timeInterval * 60;
-            if (threadingManager.simulationTick % timeInterval != 0)
+            int tickInterval = ConfigMethods.timeInterval * 60;
+            if (threadingManager.simulationTick % tickInterval != 0)
             {
                 return;
             }
@@ -39,12 +38,12 @@ namespace CSL_AutoRocketLaunch
                 return;
             }
 
-            bool autoFocus = config.autoFocus;
-            switch (config.mode)
+            bool autoFocus = ConfigMethods.autoFocus;
+            switch (ConfigMethods.modMode)
             {
                 case 1:
                     int arrivedVisitors = launchMethods.GetVisitorNum();
-                    int targetVisitorNum = config.targetVisitorNum;
+                    int targetVisitorNum = ConfigMethods.targetVisitorNum;
                     if (arrivedVisitors >= targetVisitorNum)
                     {
                         launchMethods.LaunchRocket(autoFocus);

@@ -33,7 +33,8 @@ namespace CSL_AutoRocketLaunch
             groupEnable.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-enable"), config.enabled, sel =>
             {
                 config.enabled = sel;
-                Configuration<Configs>.Save();
+                ConfigMethods.Save();
+                ConfigMethods.Load();
             });
 
             groupSettings.AddTextfield(translation.GetTranslation("AUTO-ROCKET-LAUNCH-timeInterval"), config.timeInterval.ToString(), value =>
@@ -41,18 +42,20 @@ namespace CSL_AutoRocketLaunch
                 try
                 {
                     config.timeInterval = int.Parse(value);
-                    Configuration<Configs>.Save();
+                    ConfigMethods.Save();
+                    ConfigMethods.Load();
                 }
                 catch
                 {
-                    Debug.Log("AutoRocketLaunch: TypeError");
+                    Debug.LogError("AutoRocketLaunch: TypeError");
                 }
             });
 
             groupSettings.AddCheckbox(translation.GetTranslation("AUTO-ROCKET-LAUNCH-autoFocus"), config.autoFocus, sel =>
             {
                 config.autoFocus = sel;
-                Configuration<Configs>.Save();
+                ConfigMethods.Save();
+                ConfigMethods.Load();
             });
 
             string[] modeLabels =
@@ -60,12 +63,13 @@ namespace CSL_AutoRocketLaunch
                 translation.GetTranslation("AUTO-ROCKET-LAUNCH-immediateMode"),
                 translation.GetTranslation("AUTO-ROCKET-LAUNCH-visitorMode")
             };
-            int mode = config.mode;
+            int mode = config.modMode;
 
             groupSettings.AddDropdown(translation.GetTranslation("AUTO-ROCKET-LAUNCH-modeSetting"), modeLabels, mode, sel =>
             {
-                config.mode = sel;
-                Configuration<Configs>.Save();
+                config.modMode = sel;
+                ConfigMethods.Save();
+                ConfigMethods.Load();
             });
 
             string modeDescription = translation.GetTranslation("AUTO-ROCKET-LAUNCH-immediateModeDescription") + "\n" +
@@ -82,11 +86,12 @@ namespace CSL_AutoRocketLaunch
                 try
                 {
                     config.targetVisitorNum = int.Parse(value);
-                    Configuration<Configs>.Save();
+                    ConfigMethods.Save();
+                    ConfigMethods.Load();
                 }
                 catch
                 {
-                    Debug.Log("AutoRocketLaunch: TypeError");
+                    Debug.LogError("AutoRocketLaunch: TypeError");
                 }
             });
         }
