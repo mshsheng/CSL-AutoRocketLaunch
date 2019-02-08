@@ -53,6 +53,7 @@ namespace CSL_AutoRocketLaunch.Detour
             }
         }
 
+        // Use reflection to get the method, so that this mod can be compatible with other mods.
         private void FindVehicles(ushort eventID, ref EventData data, out ushort crawler, out ushort rocket)
         {
             crawler = 0;
@@ -66,6 +67,7 @@ namespace CSL_AutoRocketLaunch.Detour
             rocket = (ushort)invokeArgs[3];
         }
 
+        // Simply copied from the original code, just deleted the code for focusing the launch site.
         protected override void BeginEvent(ushort eventID, ref EventData data)
         {
             if ((data.m_flags & EventData.Flags.Ready) == EventData.Flags.None)

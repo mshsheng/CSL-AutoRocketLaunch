@@ -10,6 +10,7 @@ namespace CSL_AutoRocketLaunch.Launch
         private EventInfo info;
         private RocketLaunchAI rocketLaunchAI;
 
+        // Initialize
         public LaunchMethods(ushort serviceLaunchSite)
         {
             instance = Singleton<BuildingManager>.instance;
@@ -18,6 +19,7 @@ namespace CSL_AutoRocketLaunch.Launch
             rocketLaunchAI = info.m_eventAI as RocketLaunchAI;
         }
 
+        // Use the same method as the ChirpX Panel
         public bool CheckLaunchState()
         {
             EventData data = Singleton<EventManager>.instance.m_events.m_buffer[m_currentEventID];
@@ -37,6 +39,7 @@ namespace CSL_AutoRocketLaunch.Launch
             ushort eventID = m_currentEventID;
             Singleton<SimulationManager>.instance.AddAction(delegate
             {
+                // The original code contains the method for auto focusing, so the detour is needed only when "AutoFocus" is not checked.
                 if (!autoFocus)
                 {
                     RocketLaunchAIDetour.Deploy();

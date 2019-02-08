@@ -10,15 +10,15 @@ namespace CSL_AutoRocketLaunch.Launch
         public ushort GetLaunchSite()
         {
             buildingManager = Singleton<BuildingManager>.instance;
-            monumentBuildings = buildingManager.GetServiceBuildings(ItemClass.Service.Monument);
+            monumentBuildings = buildingManager.GetServiceBuildings(ItemClass.Service.Monument); // ChirpX Launch Site: Monument
 
-            var buffer = buildingManager.m_buildings.m_buffer;
+            Building[] buffer = buildingManager.m_buildings.m_buffer;
             ushort serviceLaunchSite = 0;
 
             foreach (ushort serviceMonument in monumentBuildings)
             {
-                var _buildingInfoTooltipThumbnail = buffer[serviceMonument].Info.m_InfoTooltipThumbnail;
-                if (_buildingInfoTooltipThumbnail == "ChirpXLaunchSite")
+                string _buildingObjectName = buffer[serviceMonument].Info.gameObject.name;
+                if (_buildingObjectName == "ChirpX Launch Control Center") // Main Building Name: ChirpX Launch Control Center
                 {
                     serviceLaunchSite = serviceMonument;
                     break;
