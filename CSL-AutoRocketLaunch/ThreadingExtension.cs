@@ -7,13 +7,14 @@ namespace CSL_AutoRocketLaunch
     public class ThreadingExtension : ThreadingExtensionBase
     {
         private ushort serviceLaunchSite = 0;
+        private float timer;
 
-        public override void OnAfterSimulationTick()
+        public override void OnUpdate(float realTimeDelta, float simulationTimeDelta)
         {
-            base.OnAfterSimulationTick();
+            base.OnUpdate(realTimeDelta, simulationTimeDelta);
 
             // Check Pause
-            if (threadingManager.simulationTick % 60 != 0 || threadingManager.simulationPaused)
+            if (threadingManager.simulationPaused)
             {
                 return;
             }
@@ -25,8 +26,14 @@ namespace CSL_AutoRocketLaunch
             }
 
             // Check Refresh Interval
-            int tickInterval = ConfigMethods.timeInterval * 60; // Simulation tick: 60 times per second
-            if (threadingManager.simulationTick % tickInterval != 0)
+            bool intervalPassed = false;
+            timer += realTimeDelta;
+            if (timer > ConfigMethods.timeInterval)
+            {
+                timer -= ConfigMethods.timeInterval;
+                intervalPassed = true;
+            }
+            if (!intervalPassed)
             {
                 return;
             }
@@ -70,7 +77,6 @@ namespace CSL_AutoRocketLaunch
                     launchMethods.LaunchRocket(autoFocus);
                     break;
             }
-
         }
     }
 }
