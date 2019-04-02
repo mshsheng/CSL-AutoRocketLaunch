@@ -8,6 +8,7 @@ namespace CSL_AutoRocketLaunch
     {
         private ushort serviceLaunchSite = 0;
         private float timer;
+        private bool intervalPassed;
 
         public override void OnUpdate(float realTimeDelta, float simulationTimeDelta)
         {
@@ -26,7 +27,7 @@ namespace CSL_AutoRocketLaunch
             }
 
             // Check Refresh Interval
-            bool intervalPassed = false;
+            intervalPassed = false;
             timer += realTimeDelta;
             if (timer > ConfigMethods.timeInterval)
             {
